@@ -1,17 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import * as firebase from 'firebase'
+import firebase from 'firebase'
 import './index.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 
 var config = {
-	apiKey: "<REPLACE ME>",
-	authDomain: "<REPLACE ME>",
-	databaseURL: "<REPLACE ME>",
-	projectId: "<REPLACE ME>",
-	storageBucket: "<REPLACE ME>",
-	messagingSenderId: "<REPLACE ME>"
+    apiKey: "AIzaSyBU0rScH9MBLDxUFOe44a6Ylpg7hPnTSEY",
+    authDomain: "gap-web-710bf.firebaseapp.com",
+    databaseURL: "https://gap-web-710bf.firebaseio.com",
+    projectId: "gap-web-710bf",
+    storageBucket: "gap-web-710bf.appspot.com",
+    messagingSenderId: "699369203075"
 }
 firebase.initializeApp(config)
 

@@ -1,4 +1,8 @@
-.table {
+thead {
+  background-color: #343a40;
+  color: #61DAFB;
+}
+/*.table {
   display: block;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -27,4 +31,4 @@
 .table td {
   padding: 5px;
   border: 1px solid #222;
-}
+}*/
