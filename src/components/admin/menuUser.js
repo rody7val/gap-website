@@ -12,7 +12,7 @@ import { Nav, NavItem } from 'reactstrap';
       <div>
         <Nav className='shadow' style={{backgroundColor: '#007bff'}} tabs>
           <NavItem>
-            <Link className='nav-link' to={`${url}/user/${user.uid}`}>Mi perfil</Link>
+            <Link className='nav-link' to={`${url}/users/${user.uid}`}>Mi perfil</Link>
           </NavItem>
         </Nav>
       </div>

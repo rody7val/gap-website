@@ -22,10 +22,11 @@ export default class App extends Component {
 
   componentWillMount = () => {
     firebase.auth().onAuthStateChanged(user => {
+      var _user = user || {};
       var myVar;
       myVar = setTimeout(() => {
         firebase.database()
-          .ref(`users/list/${user.uid}`)
+          .ref(`users/list/${_user.uid}`)
           .on('value', snapshot => {
               console.log(snapshot.val())
               if (snapshot.val() && snapshot.val().active) {
@@ -33,10 +34,10 @@ export default class App extends Component {
                 console.log('clear!')  
                 clearTimeout(myVar);
               }
-              user.admin = snapshot.val().admin
-              user.active = snapshot.val().active
-              user.created = snapshot.val().created
-              this.setState({ user })
+              _user.admin = snapshot.val().admin
+              _user.active = snapshot.val().active
+              _user.created = snapshot.val().created
+              this.setState({ user: _user })
         })
       }, 3000);
     })
@@ -51,6 +52,7 @@ export default class App extends Component {
     })
     .catch(error => {
       this.setState({load: false})
+      console.log(error)
     })
   }
 
@@ -58,6 +60,9 @@ export default class App extends Component {
     firebase.auth().signOut().then(result => {
       this.setState({user: null})
       cb()
+    })
+    .catch(error => {
+      console.log(error)
     })
   }
 
@@ -67,31 +72,32 @@ export default class App extends Component {
         <Router>
           <div>
             <Header signout={this.signout} auth={this.auth} user={this.state.user}/>
-            <Switch>
-              <Route exact path="/" render={({ match }) => (
-                <Home url={match.url} />
-              )} />
-              <Route exact path="/nosotros" render={({ match }) => (
-                <Nosotros url={match.url}/>
-              )} />
-              <Route exact path="/prestaciones" render={({ match }) => (
-                <Prestaciones url={match.url} auth={this.auth} user={this.state.user}/>
-              )} />
-              <Route path="/muestras" render={({ match }) => (
-                <Muestras url={match.url} />
-              )} />
 
-              { 
-                this.state.user ? 
-                <Route path="/admin" render={({match}) => (
-                  <Admin match={match} user={this.state.user} />
-                )}/> 
-                : 
-                <Route path="/admin" component={_403} />
-              }
-
-              <Route component={_404}/>
-            </Switch>
+              <Switch>
+                <Route exact path="/" render={({ match }) => (
+                  <Home url={match.url} />
+                )} />
+                <Route exact path="/nosotros" render={({ match }) => (
+                  <Nosotros url={match.url}/>
+                )} />
+                <Route exact path="/prestaciones" render={({ match }) => (
+                  <Prestaciones url={match.url} auth={this.auth} user={this.state.user}/>
+                )} />
+                <Route path="/muestras" render={({ match }) => (
+                  <Muestras url={match.url} />
+                )} />
+                { 
+                  this.state.user ? 
+                  <Container style={{minHeight: '-webkit-fill-available'}}>
+                    <Route path="/admin" render={({match}) => (
+                      <Admin match={match} user={this.state.user} />
+                    )}/> 
+                  </Container>
+                  : 
+                  <Route path="/admin" component={_403} />
+                }
+                <Route component={_404}/>
+              </Switch>
 
             <Modal isOpen={this.state.load} >
               <ModalBody>

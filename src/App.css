@@ -2,6 +2,9 @@
   -webkit-animation: App-logo-spin infinite 20s linear;
   animation: App-logo-spin infinite 20s linear;
 }
+a:hover, a:hover p {
+  text-decoration: none;
+}
 .listUser{
   display: flex
 }
@@ -123,6 +126,15 @@ h1.imgStudy{
 }
 .homeText{
   text-align: left;
+}
+.shadow {
+  -webkit-box-shadow: 1px 2px 17px 0 rgba(0,0,0,.2);
+    box-shadow: 1px 2px 17px 0 rgba(0,0,0,.2);
+}
+.shadowHover:hover{
+  -webkit-box-shadow: 1px 2px 17px 0 rgba(0,0,0,.2);
+    box-shadow: 1px 2px 17px 0 rgba(0,0,0,.2);
+  cursor: pointer;
 }
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

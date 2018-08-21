@@ -1,12 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import {
-	Nav,
-	NavItem,
-	Dropdown,
-	DropdownItem,
-	DropdownToggle,
-	DropdownMenu } from 'reactstrap';
+import { Nav, NavItem } from 'reactstrap';
 
 	export default class MenuAdmin extends React.Component {
 
